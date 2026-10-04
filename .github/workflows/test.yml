@@ -1,0 +1,28 @@
+name: Test
+
+# Checks the cask's style, then installs it on macOS.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - name: Set up Homebrew with this tap
+        uses: Homebrew/actions/setup-homebrew@main
+      - run: brew style benjweaver/revoke/revoke
+      - name: Lint the update script
+        run: |
+          brew install shellcheck
+          shellcheck "$(brew --repository benjweaver/revoke)/scripts/update-cask.sh"
+      - run: brew audit --cask --strict benjweaver/revoke/revoke
+      - run: brew install --cask benjweaver/revoke/revoke
+      - name: The app is installed and runs
+        run: |
+          test -d /Applications/Revoke.app
+          codesign --verify --deep /Applications/Revoke.app
