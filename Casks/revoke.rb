@@ -21,7 +21,9 @@ cask "revoke" do
   ]
 
   caveats <<~EOS
-    Before uninstalling, choose Remove Network Filter in Revoke's settings, so
-    its network filter, a system extension, is removed as well.
+    Before uninstalling, choose Give All Links Back and Remove Network Filter in
+    Revoke's settings, so every app opens its own links again and the network
+    filter, a system extension, is removed as well. From a script:
+      /Applications/Revoke.app/Contents/MacOS/Revoke --restore-links
   EOS
 end
