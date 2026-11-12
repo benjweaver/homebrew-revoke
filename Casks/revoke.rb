@@ -1,6 +1,6 @@
 cask "revoke" do
-  version "1.6.2"
-  sha256 "273a1da434c36d90891625f832a11016467f08475aa07b9d767c5a6ec512a511"
+  version "1.6.3"
+  sha256 "cdc87d73a4c73332eaf20e31ea4bc05976f8c63b803fe9fa8d66957bb540400c"
 
   url "https://github.com/benjweaver/revoke/releases/download/v#{version}/Revoke-#{version}.zip"
   name "Revoke"
